@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DigitalClick Systems | Websites, Systems, Automation, Hosting</title>
+  <title>DigitalClick Systems | Websites, Systems, Hardware</title>
   <meta name="description" content="DigitalClick Systems builds websites and systems that help clients trust, click, and take action.">
   <meta name="theme-color" id="themeColor" content="#050816">
   <meta property="og:type" content="website">
@@ -23,6 +23,9 @@
   <link rel="image_src" href="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.png">
   <link rel="alternate" type="image/svg+xml" href="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.svg">
 
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050816'/%3E%3Cpath d='M17 22h30M17 32h20M17 42h28' stroke='%2338BDF8' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M48 15 55 22 48 29' fill='none' stroke='%238B5CF6' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -404,6 +407,11 @@
     section {
       padding: clamp(56px, 8vw, 96px) 0;
       position: relative;
+    }
+
+    main > section:not(.hero) {
+      content-visibility: auto;
+      contain-intrinsic-size: 720px;
     }
 
     .hero {
@@ -822,7 +830,8 @@
       overflow-x: hidden;
       overflow-y: hidden;
       padding: 4px 0 12px;
-      mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%);
     }
 
     .stack-row {
@@ -831,21 +840,28 @@
       justify-content: flex-start;
       gap: 14px;
       width: max-content;
-      animation: stackScroll 28s linear infinite;
+      animation: stackPass 44s linear infinite;
+      animation-delay: -12s;
       will-change: transform;
     }
 
     .stack-row.reverse {
-      animation-direction: reverse;
-      animation-duration: 32s;
+      animation-name: stackPassReverse;
+      animation-duration: 48s;
+      animation-delay: -18s;
     }
 
     .stack-row.slow {
-      animation-duration: 36s;
+      animation-duration: 54s;
+      animation-delay: -24s;
     }
 
     .stack-scroller:hover .stack-row {
       animation-play-state: paused;
+    }
+
+    .stack-row .loop-copy {
+      display: none;
     }
 
     .marquee-item {
@@ -882,12 +898,21 @@
       filter: none;
     }
 
-    @keyframes stackScroll {
+    @keyframes stackPass {
       from {
-        transform: translateX(0);
+        transform: translateX(100%);
       }
       to {
-        transform: translateX(calc(-50% - 7px));
+        transform: translateX(calc(-100% - 48px));
+      }
+    }
+
+    @keyframes stackPassReverse {
+      from {
+        transform: translateX(calc(-100% - 48px));
+      }
+      to {
+        transform: translateX(100%);
       }
     }
 
@@ -977,6 +1002,7 @@
       padding: 0;
       background-size: cover;
       background-position: center;
+      background-color: var(--surface);
       isolation: isolate;
       position: relative;
     }
@@ -985,9 +1011,10 @@
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 0;
+      z-index: 1;
       background:
         linear-gradient(180deg, rgba(2,6,23,0.02) 0%, rgba(2,6,23,0.18) 42%, rgba(2,6,23,0.88) 100%),
+        radial-gradient(circle at 24% 24%, rgba(56,189,248,0.34), transparent 28%),
         linear-gradient(135deg, rgba(56,189,248,0.18), transparent 46%);
     }
 
@@ -995,34 +1022,49 @@
       content: "";
       position: absolute;
       inset: 12px;
-      z-index: 2;
+      z-index: 3;
       pointer-events: none;
       border: 1px solid rgba(248,250,252,0.18);
       border-radius: 12px;
       opacity: 0.72;
     }
 
+    .visual-image,
+    .work-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.82;
+      filter: saturate(0.94) contrast(1.02);
+    }
+
+    .visual-image {
+      z-index: 0;
+    }
+
     .visual-card.web {
       background-image:
-        linear-gradient(135deg, rgba(56,189,248,0.14), rgba(139,92,246,0.08)),
-        url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80");
+        radial-gradient(circle at 18% 18%, rgba(56,189,248,0.34), transparent 30%),
+        linear-gradient(135deg, rgba(56,189,248,0.18), rgba(139,92,246,0.08));
     }
 
     .visual-card.systems {
       background-image:
-        linear-gradient(135deg, rgba(56,189,248,0.14), rgba(139,92,246,0.08)),
-        url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80");
+        radial-gradient(circle at 74% 18%, rgba(34,197,94,0.24), transparent 30%),
+        linear-gradient(135deg, rgba(139,92,246,0.18), rgba(56,189,248,0.08));
     }
 
     .visual-card.support {
       background-image:
-        linear-gradient(135deg, rgba(56,189,248,0.14), rgba(139,92,246,0.08)),
-        url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=80");
+        radial-gradient(circle at 70% 24%, rgba(96,165,250,0.28), transparent 32%),
+        linear-gradient(135deg, rgba(34,197,94,0.12), rgba(139,92,246,0.1));
     }
 
     .visual-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       width: 100%;
       padding: 24px;
       background: linear-gradient(180deg, transparent, rgba(2,6,23,0.78));
@@ -1166,29 +1208,43 @@
       background-position: center;
       border-bottom: 1px solid var(--border);
       position: relative;
+      overflow: hidden;
     }
 
     .work-visual::after {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
       background: linear-gradient(180deg, rgba(5,8,22,0.02), rgba(5,8,22,0.52));
     }
 
+    .work-image {
+      z-index: 0;
+    }
+
     .work-property {
-      background-image: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80");
+      background-image:
+        radial-gradient(circle at 26% 24%, rgba(56,189,248,0.36), transparent 30%),
+        linear-gradient(135deg, rgba(56,189,248,0.12), rgba(139,92,246,0.16));
     }
 
     .work-users {
-      background-image: url("https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80");
+      background-image:
+        radial-gradient(circle at 72% 24%, rgba(139,92,246,0.36), transparent 32%),
+        linear-gradient(135deg, rgba(139,92,246,0.14), rgba(34,197,94,0.1));
     }
 
     .work-sms {
-      background-image: url("https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80");
+      background-image:
+        radial-gradient(circle at 32% 34%, rgba(34,197,94,0.32), transparent 32%),
+        linear-gradient(135deg, rgba(34,197,94,0.12), rgba(56,189,248,0.12));
     }
 
     .work-code {
-      background-image: url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80");
+      background-image:
+        radial-gradient(circle at 72% 28%, rgba(56,189,248,0.3), transparent 30%),
+        linear-gradient(135deg, rgba(15,23,42,0.2), rgba(139,92,246,0.16));
     }
 
     .work-meta {
@@ -1706,6 +1762,43 @@
         width: auto;
       }
 
+      .stack-row {
+        animation: none;
+        flex-wrap: wrap;
+        width: auto;
+      }
+
+      .stack-row .loop-copy {
+        display: none;
+      }
+
+      .stack-scroller {
+        overflow: visible;
+        mask-image: none;
+      }
+
+      .nav-shell,
+      .mobile-panel,
+      .float-btn {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .visual-card {
+        min-height: 360px;
+      }
+
+      .glass-card,
+      .service-card,
+      .package-card,
+      .work-card,
+      .audience-card,
+      .process-card,
+      .founder-panel,
+      .contact-panel {
+        box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+      }
+
       .reason-grid {
         grid-template-columns: 1fr;
       }
@@ -1828,10 +1921,10 @@
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow"><span class="signal" aria-hidden="true"></span> Websites. Systems. Automation. Hosting.</p>
+          <p class="eyebrow"><span class="signal" aria-hidden="true"></span> Websites. Systems. Automation. Hardware.</p>
           <h1>Websites and systems that help clients trust, click, and take action.</h1>
           <p class="hero-lead">
-            Clean websites, dashboards, automation, hosting, and support for growing service businesses.
+            Clean websites, dashboards, automation, hosting, hardware-software integration, and support for growing service businesses.
           </p>
 
           <div class="hero-actions">
@@ -1920,14 +2013,13 @@
 
         <div class="audience-grid">
           <div class="audience-card"><i class="bi bi-hospital" aria-hidden="true"></i><strong>Clinics</strong></div>
+          <div class="audience-card"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><strong>Medical labs</strong></div>
           <div class="audience-card"><i class="bi bi-buildings" aria-hidden="true"></i><strong>Property managers</strong></div>
           <div class="audience-card"><i class="bi bi-mortarboard" aria-hidden="true"></i><strong>Schools</strong></div>
           <div class="audience-card"><i class="bi bi-scissors" aria-hidden="true"></i><strong>Salons</strong></div>
-          <div class="audience-card"><i class="bi bi-person-workspace" aria-hidden="true"></i><strong>Consultants</strong></div>
-          <div class="audience-card"><i class="bi bi-shop" aria-hidden="true"></i><strong>SMEs</strong></div>
-          <div class="audience-card"><i class="bi bi-people" aria-hidden="true"></i><strong>Communities</strong></div>
-          <div class="audience-card"><i class="bi bi-camera-reels" aria-hidden="true"></i><strong>Creators</strong></div>
-          <div class="audience-card"><i class="bi bi-cpu" aria-hidden="true"></i><strong>Tech teams</strong></div>
+          <div class="audience-card"><i class="bi bi-shop" aria-hidden="true"></i><strong>Local businesses</strong></div>
+          <div class="audience-card"><i class="bi bi-truck" aria-hidden="true"></i><strong>Logistics teams</strong></div>
+          <div class="audience-card"><i class="bi bi-tools" aria-hidden="true"></i><strong>Technical facilities</strong></div>
         </div>
       </div>
     </section>
@@ -1937,7 +2029,7 @@
         <div class="wrap">
           <div class="marquee-head">
             <h2>Tools we build with</h2>
-            <p>Real stacks for websites, systems, hosting, data, and automation.</p>
+            <p>Real stacks for websites, systems, hosting, data, automation, and device workflows.</p>
           </div>
         </div>
         <div class="marquee-viewport" role="group" aria-label="Technology list">
@@ -1946,24 +2038,24 @@
               <span class="stack-label">Frontend</span>
               <div class="stack-scroller">
                 <div class="stack-row">
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="">Bootstrap</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="">Tailwind</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="">Sass</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="">Bootstrap</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="">Tailwind</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="">Sass</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="">Bootstrap</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="">Tailwind</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="">Sass</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="">Bootstrap</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="">Tailwind</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="">Sass</span>
                 </div>
               </div>
             </div>
@@ -1971,20 +2063,20 @@
               <span class="stack-label">Backend</span>
               <div class="stack-scroller">
                 <div class="stack-row reverse">
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
-                  <span class="marquee-item"><img class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="">Django</span>
-                  <span class="marquee-item"><img class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="">Flask</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="">FastAPI</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">Node.js</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="">Pytest</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="">APIs</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="">Django</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="">Flask</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="">FastAPI</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">Node.js</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="">Pytest</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="">APIs</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="">Django</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="">Flask</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="">FastAPI</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">Node.js</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="">Pytest</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="">APIs</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="">Django</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="">Flask</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="">FastAPI</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">Node.js</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="">Pytest</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="">APIs</span>
                 </div>
               </div>
             </div>
@@ -1992,18 +2084,18 @@
               <span class="stack-label">Databases</span>
               <div class="stack-scroller">
                 <div class="stack-row slow">
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="">SQLite</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="">Firebase</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="">Supabase</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="">SQLite</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="">Firebase</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="">Supabase</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="">SQLite</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="">Firebase</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="">Supabase</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="">SQLite</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="">Firebase</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="">Supabase</span>
                 </div>
               </div>
             </div>
@@ -2011,22 +2103,22 @@
               <span class="stack-label">Hosting</span>
               <div class="stack-scroller">
                 <div class="stack-row reverse slow">
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">Azure</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">Linux</span>
-                  <span class="marquee-item"><img class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="">Nginx</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="">Cloudflare</span>
-                  <span class="marquee-item"><img class="brand-icon" src="https://cdn.simpleicons.org/cpanel/FF6C2C" alt="">cPanel</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">Azure</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">Linux</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="">Nginx</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="">Cloudflare</span>
-                  <span class="marquee-item loop-copy" aria-hidden="true"><img class="brand-icon" src="https://cdn.simpleicons.org/cpanel/FF6C2C" alt="">cPanel</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">Azure</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">Linux</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="">Nginx</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="">Cloudflare</span>
+                  <span class="marquee-item"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.simpleicons.org/cpanel/FF6C2C" alt="">cPanel</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">Azure</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">Linux</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="">Nginx</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="">Cloudflare</span>
+                  <span class="marquee-item loop-copy" aria-hidden="true"><img loading="lazy" decoding="async" fetchpriority="low" class="brand-icon" src="https://cdn.simpleicons.org/cpanel/FF6C2C" alt="">cPanel</span>
                 </div>
               </div>
             </div>
@@ -2047,18 +2139,21 @@
 
         <div class="outcome-grid">
           <article class="glass-card visual-card web">
+            <img class="visual-image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=60" srcset="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=480&q=55 480w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=60 800w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=60 1100w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
             <div class="visual-content">
               <h3>Look professional</h3>
               <p>Clean websites that make clients trust you faster.</p>
             </div>
           </article>
           <article class="glass-card visual-card systems">
+            <img class="visual-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=60" srcset="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=480&q=55 480w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60 800w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1100&q=60 1100w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
             <div class="visual-content">
               <h3>Run cleaner</h3>
               <p>Dashboards for records, bookings, tenants, and reports.</p>
             </div>
           </article>
           <article class="glass-card visual-card support">
+            <img class="visual-image" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=60" srcset="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=480&q=55 480w, https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=60 800w, https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1100&q=60 1100w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
             <div class="visual-content">
               <h3>Stay supported</h3>
               <p>Hosting, fixes, updates, and practical tech help.</p>
@@ -2075,7 +2170,7 @@
             <p class="section-kicker">Services</p>
             <h2>Build what your business needs.</h2>
           </div>
-          <p>Web presence, internal systems, automation, hosting, and ongoing care.</p>
+          <p>Web presence, internal systems, automation, hardware integration, hosting, and care.</p>
         </div>
 
         <div class="service-grid">
@@ -2128,14 +2223,14 @@
           </article>
 
           <article class="service-card">
-            <span class="card-icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
-            <h3>Health-Tech &amp; Hardware Integration</h3>
-            <p>Software meets equipment.</p>
+            <span class="card-icon"><i class="bi bi-cpu" aria-hidden="true"></i></span>
+            <h3>Hardware &amp; Software Integration</h3>
+            <p>Connect devices to useful systems.</p>
             <ul>
               <li>Lab workflow systems</li>
               <li>Device dashboards</li>
               <li>Sensor integrations</li>
-              <li>Equipment tracking</li>
+              <li>Equipment and lab tracking</li>
             </ul>
           </article>
 
@@ -2241,87 +2336,146 @@
 
         <div class="work-grid">
           <article class="work-card">
-            <div class="work-visual work-property" aria-hidden="true"></div>
+            <div class="work-visual work-property" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
             <span class="work-tag">Business Systems</span>
             <h3>Property Management Hub</h3>
             <div class="work-meta">
               <p><strong>Problem:</strong> Scattered tenant records.</p>
-              <p><strong>Build:</strong> Property and tenant hub.</p>
-              <p><strong>Value:</strong> Cleaner follow-up.</p>
+              <p><strong>Build:</strong> Tenants, units, rent, and follow-ups.</p>
+              <p><strong>Value:</strong> Cleaner property operations.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>View Repos</a>
-              <a class="btn" href="#contact">Request Similar</a>
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Property System</a>
             </div>
           </article>
 
           <article class="work-card">
-            <div class="work-visual work-users" aria-hidden="true"></div>
-            <span class="work-tag">Business Systems</span>
-            <h3>User System</h3>
+            <div class="work-visual work-code" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Websites</span>
+            <h3>Service Business Website</h3>
             <div class="work-meta">
-              <p><strong>Problem:</strong> Messy permissions.</p>
-              <p><strong>Build:</strong> Users and roles.</p>
-              <p><strong>Value:</strong> Safer access.</p>
+              <p><strong>Problem:</strong> Clients cannot trust what they see.</p>
+              <p><strong>Build:</strong> Clear services, CTAs, and contact flow.</p>
+              <p><strong>Value:</strong> More confident enquiries.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Similar System</a>
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Website</a>
             </div>
           </article>
 
           <article class="work-card">
-            <div class="work-visual work-sms" aria-hidden="true"></div>
-            <span class="work-tag">Automation &amp; Backend</span>
-            <h3>Healthline SMS</h3>
+            <div class="work-visual work-users" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Bookings</span>
+            <h3>Appointment Booking System</h3>
             <div class="work-meta">
-              <p><strong>Problem:</strong> Slow outreach.</p>
-              <p><strong>Build:</strong> SMS workflow.</p>
-              <p><strong>Value:</strong> Faster follow-up.</p>
+              <p><strong>Problem:</strong> Bookings get lost in messages.</p>
+              <p><strong>Build:</strong> Client slots, records, and reminders.</p>
+              <p><strong>Value:</strong> Fewer missed appointments.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Similar System</a>
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Booking System</a>
             </div>
           </article>
 
           <article class="work-card">
-            <div class="work-visual work-sms" aria-hidden="true"></div>
-            <span class="work-tag">Automation &amp; Backend</span>
-            <h3>Main SMS Platform</h3>
+            <div class="work-visual work-sms" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Clinic / Health-Tech</span>
+            <h3>Clinic Workflow Dashboard</h3>
             <div class="work-meta">
-              <p><strong>Problem:</strong> Repeated alerts.</p>
-              <p><strong>Build:</strong> Bulk SMS base.</p>
-              <p><strong>Value:</strong> Reusable messaging.</p>
+              <p><strong>Problem:</strong> Patient and lab tasks are scattered.</p>
+              <p><strong>Build:</strong> Visits, notes, reports, and tracking.</p>
+              <p><strong>Value:</strong> Cleaner daily clinical flow.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Similar</a>
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Clinic System</a>
             </div>
           </article>
 
           <article class="work-card">
-            <div class="work-visual work-code" aria-hidden="true"></div>
-            <span class="work-tag">Open Source / Repositories</span>
-            <h3>Django Ready-Made Backend</h3>
+            <div class="work-visual work-code" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Inventory</span>
+            <h3>Stock &amp; Inventory Tracker</h3>
             <div class="work-meta">
-              <p><strong>Problem:</strong> Slow backend starts.</p>
-              <p><strong>Build:</strong> Django starter.</p>
-              <p><strong>Value:</strong> Faster systems.</p>
+              <p><strong>Problem:</strong> Items move without clear records.</p>
+              <p><strong>Build:</strong> Stock levels, logs, and reports.</p>
+              <p><strong>Value:</strong> Better buying decisions.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Similar</a>
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Inventory System</a>
             </div>
           </article>
 
           <article class="work-card">
-            <div class="work-visual work-code" aria-hidden="true"></div>
-            <span class="work-tag">Health-Tech / Engineering</span>
-            <h3>Symptom Checker</h3>
+            <div class="work-visual work-sms" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Applications</span>
+            <h3>Loan / Application Portal</h3>
             <div class="work-meta">
-              <p><strong>Problem:</strong> Health flows need clarity.</p>
-              <p><strong>Build:</strong> Symptom prototype.</p>
-              <p><strong>Value:</strong> Simpler guidance.</p>
+              <p><strong>Problem:</strong> Forms arrive through many channels.</p>
+              <p><strong>Build:</strong> Online applications and admin review.</p>
+              <p><strong>Value:</strong> Faster decisions and records.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Similar</a>
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Portal</a>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-visual work-sms" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Automation</span>
+            <h3>SMS &amp; Email Notification Flow</h3>
+            <div class="work-meta">
+              <p><strong>Problem:</strong> Follow-ups happen too late.</p>
+              <p><strong>Build:</strong> Alerts for clients, staff, and admins.</p>
+              <p><strong>Value:</strong> Faster communication.</p>
+            </div>
+            <div class="card-actions">
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Automation</a>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-visual work-code" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Dashboards</span>
+            <h3>Reports &amp; Analytics Dashboard</h3>
+            <div class="work-meta">
+              <p><strong>Problem:</strong> Decisions depend on guesswork.</p>
+              <p><strong>Build:</strong> Charts, exports, and business reports.</p>
+              <p><strong>Value:</strong> Clearer performance tracking.</p>
+            </div>
+            <div class="card-actions">
+              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Request Dashboard</a>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-visual work-code" aria-hidden="true">
+              <img class="work-image" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=720&q=58" srcset="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=420&q=54 420w, https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=720&q=58 720w, https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=960&q=58 960w" sizes="(max-width: 760px) calc(100vw - 36px), 33vw" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <span class="work-tag">Backend / APIs</span>
+            <h3>Django Backend Starter</h3>
+            <div class="work-meta">
+              <p><strong>Problem:</strong> Systems take too long to start.</p>
+              <p><strong>Build:</strong> Login, database, APIs, and admin base.</p>
+              <p><strong>Value:</strong> Faster custom builds.</p>
+            </div>
+            <div class="card-actions">
+              <a class="btn primary" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i>View Repos</a>
             </div>
           </article>
         </div>
@@ -2415,7 +2569,7 @@
             <p class="section-kicker">Professional Background</p>
             <h2>Qualified developer for practical business systems.</h2>
             <p class="founder-note">
-              Professional software developer for websites, dashboards, automation, hosting, biomedical workflows, and technical support.
+              Professional software developer for websites, dashboards, automation, hosting, hardware-software integration, biomedical workflows, and technical support.
             </p>
             <div class="section-actions">
               <a class="btn primary" href="#services"><i class="bi bi-send" aria-hidden="true"></i>Start a Project</a>
@@ -2433,7 +2587,7 @@
             </div>
             <div class="founder-stat">
               <strong>Technical workflows</strong>
-              <span>Health-tech and integrations.</span>
+              <span>Hardware, health-tech, and integrations.</span>
             </div>
           </div>
         </div>
@@ -2535,6 +2689,9 @@
       <div class="section-actions">
         <a class="btn primary" id="claimOffer" href="#contact">
           <i class="bi bi-rocket-takeoff" aria-hidden="true"></i>Claim Hosting Offer
+        </a>
+        <a class="btn secondary" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer">
+          <i class="bi bi-github" aria-hidden="true"></i>View Repositories
         </a>
         <button class="btn" type="button" id="dismissOffer">Not Now</button>
       </div>
@@ -2759,7 +2916,7 @@
     window.addEventListener('load', () => {
       if (!offerModal || typeof offerModal.showModal !== 'function') return;
       if (sessionStorage.getItem(offerKey)) return;
-      window.setTimeout(() => offerModal.showModal(), reduceMotion ? 1200 : 10000);
+      window.setTimeout(() => offerModal.showModal(), 13000);
     });
 
     closeOffer?.addEventListener('click', closeHostingOffer);
