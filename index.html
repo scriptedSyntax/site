@@ -830,8 +830,8 @@
       overflow-x: hidden;
       overflow-y: hidden;
       padding: 4px 0 12px;
-      mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%);
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
     }
 
     .stack-row {
@@ -840,28 +840,21 @@
       justify-content: flex-start;
       gap: 14px;
       width: max-content;
-      animation: stackPass 44s linear infinite;
-      animation-delay: -12s;
+      animation: stackScroll 34s linear infinite;
       will-change: transform;
     }
 
     .stack-row.reverse {
-      animation-name: stackPassReverse;
-      animation-duration: 48s;
-      animation-delay: -18s;
+      animation-direction: reverse;
+      animation-duration: 38s;
     }
 
     .stack-row.slow {
-      animation-duration: 54s;
-      animation-delay: -24s;
+      animation-duration: 44s;
     }
 
     .stack-scroller:hover .stack-row {
       animation-play-state: paused;
-    }
-
-    .stack-row .loop-copy {
-      display: none;
     }
 
     .marquee-item {
@@ -898,21 +891,12 @@
       filter: none;
     }
 
-    @keyframes stackPass {
+    @keyframes stackScroll {
       from {
-        transform: translateX(100%);
+        transform: translateX(0);
       }
       to {
-        transform: translateX(calc(-100% - 48px));
-      }
-    }
-
-    @keyframes stackPassReverse {
-      from {
-        transform: translateX(calc(-100% - 48px));
-      }
-      to {
-        transform: translateX(100%);
+        transform: translateX(calc(-50% - 7px));
       }
     }
 
@@ -1750,31 +1734,63 @@
       .marquee-head {
         align-items: flex-start;
         flex-direction: column;
+        gap: 8px;
       }
 
       .stack-row-wrap {
         align-items: flex-start;
         flex-direction: column;
-        gap: 8px;
+        gap: 9px;
       }
 
       .stack-label {
         width: auto;
+        padding-left: 2px;
+        font-size: 11px;
       }
 
       .stack-row {
-        animation: none;
-        flex-wrap: wrap;
-        width: auto;
+        display: flex;
+        gap: 12px;
+        width: max-content;
+        animation: stackScroll 24s linear infinite;
+      }
+
+      .stack-row.reverse {
+        animation-direction: reverse;
+        animation-duration: 27s;
+      }
+
+      .stack-row.slow {
+        animation-duration: 30s;
       }
 
       .stack-row .loop-copy {
-        display: none;
+        display: inline-flex;
       }
 
       .stack-scroller {
-        overflow: visible;
-        mask-image: none;
+        width: 100%;
+        overflow: hidden;
+        padding: 2px 0 10px;
+        mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+      }
+
+      .marquee-item {
+        width: 94px;
+        min-height: 84px;
+        padding: 12px 10px;
+        gap: 8px;
+        border-color: var(--border);
+        background: var(--card);
+        box-shadow: none;
+        font-size: 11px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
       }
 
       .nav-shell,
@@ -1834,6 +1850,10 @@
 
       .brand-text strong {
         max-width: 190px;
+      }
+
+      .stack-row {
+        display: flex;
       }
     }
 
