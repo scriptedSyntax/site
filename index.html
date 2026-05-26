@@ -1913,14 +1913,14 @@
         </div>
       </div>
     </section>
-
+    
     <section class="warm-band" id="contact">
       <div class="wrap contact-layout">
         <div>
           <p class="section-kicker">Contact</p>
           <h2>Ready to build something more professional?</h2>
           <p class="lead">Share the kind of website, system or support you need and DigitalClick Systems will help shape the next practical step.</p>
-
+    
           <div class="contact-card">
             <h3>Project desk</h3>
             <ul class="contact-list">
@@ -1937,18 +1937,23 @@
             <p class="form-note">Best for websites, internal systems, technical support, automation and online presence cleanup.</p>
           </div>
         </div>
-
+    
         <form class="contact-card quote-form" id="quoteForm">
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" autocomplete="name" placeholder="Your name" required>
           </div>
-
+    
           <div class="field">
             <label for="email">Email</label>
             <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
           </div>
-
+    
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+254 700 000 000" required>
+          </div>
+    
           <div class="field">
             <label for="service">Service</label>
             <select id="service" name="service">
@@ -1960,7 +1965,7 @@
               <option>SEO and Online Presence</option>
             </select>
           </div>
-
+    
           <div class="field">
             <label for="timeline">Timeline</label>
             <select id="timeline" name="timeline">
@@ -1970,12 +1975,12 @@
               <option>Urgent support</option>
             </select>
           </div>
-
+    
           <div class="field full">
             <label for="message">Project details</label>
             <textarea id="message" name="message" placeholder="Tell me what you want to build or improve." required></textarea>
           </div>
-
+    
           <div class="form-actions">
             <button class="btn primary" type="submit"><span class="btn-mark" aria-hidden="true"></span>Send Inquiry</button>
             <a class="btn" href="mailto:samuelmwas262@gmail.com?subject=DigitalClick%20Systems%20Project%20Inquiry"><span class="btn-mark" aria-hidden="true"></span>Email Directly</a>
@@ -2066,6 +2071,7 @@
       const bodyLines = [
         `Name: ${data.get('name') || ''}`,
         `Email: ${data.get('email') || ''}`,
+        `Phone: ${data.get('phone') || ''}`,
         `Service: ${data.get('service') || ''}`,
         `Timeline: ${data.get('timeline') || ''}`,
         '',
