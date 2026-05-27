@@ -1,98 +1,146 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">DigitalClick Systems social preview</title>
-  <desc id="desc">A light professional preview card for websites, systems, automation and support.</desc>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DigitalClick Systems — Digital tools that make business easier to run.</title>
+  <desc id="desc">Social sharing preview for DigitalClick Systems, featuring websites, business systems, automation and technical support.</desc>
+
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f7fbff"/>
-      <stop offset="0.54" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#fff7f1"/>
+    <linearGradient id="background" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.56" stop-color="#FBFDFF"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
     </linearGradient>
-    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f3652d"/>
-      <stop offset="1" stop-color="#ff9b45"/>
+    <linearGradient id="logo" x1="64" y1="52" x2="122" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1749D7"/>
+      <stop offset="1" stop-color="#10379F"/>
     </linearGradient>
-    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0e7490"/>
-      <stop offset="1" stop-color="#22a6b3"/>
+    <linearGradient id="heroCard" x1="760" y1="108" x2="1119" y2="518" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F8FF"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#182230" flood-opacity="0.15"/>
+    <linearGradient id="darkCard" x1="786" y1="392" x2="1084" y2="473" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09172F"/>
+      <stop offset="1" stop-color="#142D62"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1749D7" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#1749D7" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="boardShadow" x="714" y="67" width="461" height="510" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0.035 0 0 0 0 0.09 0 0 0 0 0.184 0 0 0 0.13 0"/>
+      <feOffset dy="22"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feComposite in2="SourceAlpha" operator="out"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
     </filter>
-    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
-      <path d="M42 0H0V42" fill="none" stroke="#dce7f0" stroke-width="1" opacity="0.55"/>
-    </pattern>
+    <filter id="pillShadow" x="777" y="385" width="328" height="109" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0.035 0 0 0 0 0.09 0 0 0 0 0.184 0 0 0 0.17 0"/>
+      <feOffset dy="12"/>
+      <feGaussianBlur stdDeviation="12"/>
+      <feComposite in2="SourceAlpha" operator="out"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+    <clipPath id="boardClip">
+      <rect x="753" y="90" width="377" height="438" rx="30"/>
+    </clipPath>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#grid)" opacity="0.45"/>
-  <path d="M0 475 C170 430 260 555 425 515 C580 478 655 420 820 462 C965 500 1050 520 1200 442 V630 H0 Z" fill="#fff1e8" opacity="0.78"/>
-  <path d="M0 526 C178 474 294 604 470 564 C655 522 724 467 910 515 C1030 546 1117 560 1200 522 V630 H0 Z" fill="#e9f8fb" opacity="0.72"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <path d="M0 0H1200V8H0V0Z" fill="#1749D7"/>
+  <circle cx="1110" cy="38" r="270" fill="url(#blueGlow)"/>
+  <circle cx="1165" cy="590" r="220" fill="#DDF8F5" opacity="0.42"/>
+  <path d="M44 574H1149" stroke="#DFE8F7"/>
 
-  <g transform="translate(78 72)">
-    <g>
-      <rect x="0" y="0" width="74" height="74" rx="18" fill="url(#orange)"/>
-      <path d="M23 21h22c10 0 18 7 18 16s-8 16-18 16H23V21Z" fill="#fff"/>
-      <path d="M18 19v36" stroke="#0e7490" stroke-width="6" stroke-linecap="round"/>
-    </g>
-    <text x="96" y="31" fill="#182230" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="0">DigitalClick Systems</text>
-    <text x="96" y="61" fill="#5b697a" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.6">BUSINESS IT PARTNER</text>
+  <!-- Brand -->
+  <rect x="62" y="50" width="62" height="62" rx="18" fill="url(#logo)"/>
+  <path d="M78 66H92.4C103.2 66 109 71.8 109 81C109 90.2 103.2 96 92.4 96H78V66ZM87.6 73.8V88.2H92.7C97.7 88.2 100.4 86.1 100.4 81C100.4 75.9 97.7 73.8 92.7 73.8H87.6Z" fill="#FFFFFF"/>
+  <path d="M78 66H83.5V96H78V66Z" fill="#76D7D0"/>
+  <text x="140" y="78" fill="#09172F" font-family="Manrope, Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.8">DigitalClick Systems</text>
+  <text x="140" y="100" fill="#5D6B82" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2.1">BUSINESS IT PARTNER</text>
+
+  <!-- Main copy -->
+  <text x="62" y="173" fill="#1749D7" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2.4">WEBSITES  ·  SYSTEMS  ·  AUTOMATION  ·  SUPPORT</text>
+
+  <text x="62" y="236" fill="#09172F" font-family="Manrope, Arial, sans-serif" font-size="52" font-weight="800" letter-spacing="-2">
+    <tspan x="62" dy="0">Digital tools that make</tspan>
+    <tspan x="62" dy="59">business </tspan><tspan fill="#1749D7">easier to run.</tspan>
+  </text>
+
+  <text x="62" y="391" fill="#5D6B82" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400">
+    <tspan x="62" dy="0">Polished websites, practical internal systems and</tspan>
+    <tspan x="62" dy="30">reliable technical support for growing businesses.</tspan>
+  </text>
+
+  <!-- Service chips -->
+  <g>
+    <rect x="62" y="474" width="147" height="43" rx="21.5" fill="#EDF4FF" stroke="#D3E2FF"/>
+    <circle cx="84" cy="495.5" r="6" fill="#1749D7"/>
+    <text x="99" y="501" fill="#324760" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">Websites</text>
+
+    <rect x="220" y="474" width="145" height="43" rx="21.5" fill="#EAF9F7" stroke="#D0EEEA"/>
+    <circle cx="242" cy="495.5" r="6" fill="#12A6A1"/>
+    <text x="257" y="501" fill="#324760" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">Systems</text>
+
+    <rect x="376" y="474" width="157" height="43" rx="21.5" fill="#F4F8FF" stroke="#DFE8F7"/>
+    <circle cx="398" cy="495.5" r="6" fill="#087E67"/>
+    <text x="413" y="501" fill="#324760" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">Automation</text>
   </g>
 
-  <g transform="translate(78 190)">
-    <text x="0" y="0" fill="#0e7490" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3">WEB SOLUTIONS</text>
-    <text x="0" y="72" fill="#182230" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="900" letter-spacing="0">Websites, systems</text>
-    <text x="0" y="140" fill="#182230" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="900" letter-spacing="0">&amp; automation.</text>
-    <text x="0" y="190" fill="#5b697a" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="500">Professional digital delivery for growing businesses.</text>
+  <!-- Dashboard visual -->
+  <g filter="url(#boardShadow)">
+    <rect x="753" y="90" width="377" height="438" rx="30" fill="url(#heroCard)" stroke="#DFE8F7"/>
+  </g>
+  <g clip-path="url(#boardClip)">
+    <rect x="753" y="90" width="377" height="80" fill="#FFFFFF"/>
+    <text x="780" y="126" fill="#09172F" font-family="Manrope, Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="-0.3">Business overview</text>
+    <text x="780" y="148" fill="#72839D" font-family="Inter, Arial, sans-serif" font-size="12">Website and operations snapshot</text>
+    <rect x="1036" y="114" width="68" height="30" rx="15" fill="#E7FAF2"/>
+    <circle cx="1051" cy="129" r="4" fill="#12A67C"/>
+    <text x="1062" y="133" fill="#087E67" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700">Active</text>
+
+    <rect x="771" y="174" width="341" height="335" rx="23" fill="#F5F8FF"/>
+    <rect x="788" y="192" width="145" height="90" rx="16" fill="#FFFFFF"/>
+    <text x="805" y="217" fill="#6C7D97" font-family="Inter, Arial, sans-serif" font-size="11">Website inquiries</text>
+    <text x="805" y="250" fill="#09172F" font-family="Manrope, Arial, sans-serif" font-size="29" font-weight="800" letter-spacing="-1">24</text>
+    <text x="805" y="268" fill="#8392A8" font-family="Inter, Arial, sans-serif" font-size="10">This month</text>
+
+    <rect x="948" y="192" width="145" height="90" rx="16" fill="#FFFFFF"/>
+    <text x="965" y="217" fill="#6C7D97" font-family="Inter, Arial, sans-serif" font-size="11">Follow-ups</text>
+    <text x="965" y="250" fill="#09172F" font-family="Manrope, Arial, sans-serif" font-size="29" font-weight="800" letter-spacing="-1">08</text>
+    <text x="965" y="268" fill="#8392A8" font-family="Inter, Arial, sans-serif" font-size="10">To action</text>
+
+    <rect x="788" y="296" width="305" height="86" rx="16" fill="#FFFFFF"/>
+    <text x="805" y="321" fill="#09172F" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">Inquiry pipeline</text>
+    <text x="1045" y="321" fill="#1749D7" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700">Live</text>
+
+    <text x="805" y="347" fill="#6C7D97" font-family="Inter, Arial, sans-serif" font-size="10">New</text>
+    <rect x="850" y="339" width="180" height="7" rx="3.5" fill="#EAF0FA"/>
+    <rect x="850" y="339" width="147" height="7" rx="3.5" fill="#1749D7"/>
+    <text x="1054" y="347" fill="#52637C" font-family="Inter, Arial, sans-serif" font-size="10">18</text>
+
+    <text x="805" y="367" fill="#6C7D97" font-family="Inter, Arial, sans-serif" font-size="10">Quoted</text>
+    <rect x="850" y="359" width="180" height="7" rx="3.5" fill="#EAF0FA"/>
+    <rect x="850" y="359" width="95" height="7" rx="3.5" fill="#12A6A1"/>
+    <text x="1054" y="367" fill="#52637C" font-family="Inter, Arial, sans-serif" font-size="10">11</text>
   </g>
 
-  <g transform="translate(78 470)">
-    <rect x="0" y="0" width="168" height="48" rx="24" fill="#f3652d"/>
-    <text x="30" y="31" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="900">Start a project</text>
-    <rect x="184" y="0" width="194" height="48" rx="24" fill="#ffffff" stroke="#dde7f0"/>
-    <circle cx="212" cy="24" r="6" fill="#16803c"/>
-    <text x="232" y="31" fill="#182230" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="900">Fast local assets</text>
+  <!-- Hero floating claim card -->
+  <g filter="url(#pillShadow)">
+    <rect x="785" y="397" width="300" height="73" rx="17" fill="url(#darkCard)"/>
   </g>
+  <rect x="805" y="417" width="34" height="34" rx="11" fill="#193665"/>
+  <path d="M824 423L814 437H822L819 446L830 432H822L824 423Z" fill="#76D7D0"/>
+  <text x="853" y="428" fill="#EEF4FF" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Cleaner workflows.</text>
+  <text x="853" y="449" fill="#BDD0E9" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500">Faster action.</text>
 
-  <g transform="translate(648 88)" filter="url(#shadow)">
-    <rect x="0" y="0" width="462" height="324" rx="18" fill="#ffffff" stroke="#dde7f0"/>
-    <rect x="0" y="0" width="462" height="48" rx="18" fill="#f4f8fb"/>
-    <path d="M0 38H462" stroke="#dde7f0"/>
-    <circle cx="28" cy="24" r="6" fill="#f3652d"/>
-    <circle cx="48" cy="24" r="6" fill="#d89215"/>
-    <circle cx="68" cy="24" r="6" fill="#16803c"/>
-    <rect x="96" y="16" width="234" height="16" rx="8" fill="#e5edf4"/>
-
-    <g transform="translate(32 84)">
-      <rect x="0" y="0" width="172" height="18" rx="9" fill="#182230"/>
-      <rect x="0" y="34" width="250" height="12" rx="6" fill="#dce7f0"/>
-      <rect x="0" y="58" width="206" height="12" rx="6" fill="#dce7f0"/>
-      <rect x="0" y="94" width="120" height="38" rx="19" fill="url(#orange)"/>
-    </g>
-
-    <g transform="translate(274 80)">
-      <rect x="0" y="0" width="70" height="70" rx="12" fill="#fff1e8"/>
-      <rect x="90" y="0" width="70" height="70" rx="12" fill="#e9f8fb"/>
-      <rect x="0" y="90" width="70" height="70" rx="12" fill="#eef9ef"/>
-      <rect x="90" y="90" width="70" height="70" rx="12" fill="#f5f8fb"/>
-      <circle cx="35" cy="35" r="13" fill="#f3652d"/>
-      <circle cx="125" cy="35" r="13" fill="#0e7490"/>
-      <circle cx="35" cy="125" r="13" fill="#16803c"/>
-      <circle cx="125" cy="125" r="13" fill="#d89215"/>
-    </g>
-  </g>
-
-  <g transform="translate(596 452)" filter="url(#shadow)">
-    <rect x="0" y="0" width="262" height="96" rx="16" fill="#ffffff" stroke="#dde7f0"/>
-    <text x="24" y="36" fill="#f3652d" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="900">12+</text>
-    <text x="24" y="68" fill="#5b697a" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800">website launches</text>
-    <rect x="150" y="24" width="84" height="12" rx="6" fill="#dce7f0"/>
-    <rect x="150" y="48" width="58" height="12" rx="6" fill="#dce7f0"/>
-  </g>
-
-  <g transform="translate(886 452)" filter="url(#shadow)">
-    <rect x="0" y="0" width="224" height="96" rx="16" fill="#ffffff" stroke="#dde7f0"/>
-    <text x="24" y="36" fill="#0e7490" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="900">8+</text>
-    <text x="24" y="68" fill="#5b697a" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800">business systems</text>
-    <path d="M150 66V33M173 66V44M196 66V24" stroke="#16803c" stroke-width="10" stroke-linecap="round"/>
-  </g>
+  <!-- Footer -->
+  <text x="62" y="596" fill="#50627C" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">DigitalClick Systems</text>
+  <text x="232" y="596" fill="#91A0B6" font-family="Inter, Arial, sans-serif" font-size="14">•</text>
+  <text x="250" y="596" fill="#50627C" font-family="Inter, Arial, sans-serif" font-size="14">Website Development</text>
+  <text x="424" y="596" fill="#91A0B6" font-family="Inter, Arial, sans-serif" font-size="14">•</text>
+  <text x="442" y="596" fill="#50627C" font-family="Inter, Arial, sans-serif" font-size="14">Business Systems</text>
 </svg>
